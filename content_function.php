@@ -80,7 +80,7 @@
   function replytopost($cid, $scid, $tid) {
     echo "<div class='content'><form action='/xampp/breaddit/addreply.php?cid=".$cid."&scid=".$scid."&tid=".$tid."' method='POST'>
           <p>Comment</p>
-          <textarea cols='80' rows='5' id='comment'></textarea><br />
+          <textarea cols='80' rows='5' name='comment' id='comment'></textarea><br />
           <input type='submit' value='Comment' />
           </form></div>";
   }
@@ -88,7 +88,7 @@
   function dispreplies($cid, $scid, $tid) {
     include('connect.php');
 
-    $select = mysqli_query($db, "SELECT replies.author, comment, replies.date_posted FROM categories, subcategories, topics, replies
+    $select = mysqli_query($db, "SELECT replies.author, replies.comment, replies.date_posted FROM categories, subcategories, topics, replies
 									  WHERE ($cid = replies.category_id) AND ($scid = replies.subcategory_id) AND ($tid = replies.topic_id)
                     AND ($cid = categories.cat_id) AND ($scid = subcategories.subcat_id) AND ($tid = topics.topic_id) ORDER BY reply_id DESC");
 
