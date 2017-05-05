@@ -52,7 +52,7 @@
 			echo "</table>";
     }
     else {
-      echo "<p>This category has no topics yet. <a href='/xampp/breaddit/newtopic.php?cid=".$cid."&scid=".$scid."'> Be the first to post!</a></p>";
+      echo "<p><b>This category has no topics yet. <a href='/xampp/breaddit/newtopic.php?cid=".$cid."&scid=".$scid."'> Be the first to post!</a></b></p>";
     }
   }
 
