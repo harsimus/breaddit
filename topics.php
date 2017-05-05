@@ -32,9 +32,6 @@
          ?>
       </div>
     </div>
-    <div>
-      <h3>This is filler</h3>
-    </div>
     <?php
       if(isset($_SESSION['username'])) {
         echo "<div class='button'><p><a href='/xampp/breaddit/newtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."'>

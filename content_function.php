@@ -46,7 +46,7 @@
 			echo "<tr><th>Title</th><th>Posted By</th><th>Date Posted</th><th>Views</th><th>Replies</th></tr>";
 			while ($row = mysqli_fetch_assoc($select)) {
 				echo "<tr><td><a href='/xampp/breaddit/readtopic.php?cid=".$cid."&scid=".$scid."&tid=".$row['topic_id']."'>
-					 ".$row['title']."</a></td><td>".$row['author']."</td><td>".$row['date_posted']."</td><td>".$row['views']."</td>
+					 ".$row['title']."</a></td><td>".$row['author']."</td><td><i>".$row['date_posted']."</i></td><td>".$row['views']."</td>
 					 <td>".$row['replies']."</td></tr>";
 			}
 			echo "</table>";
@@ -74,12 +74,12 @@
   }
 
   function replylink($cid, $scid, $tid) {
-    echo "<div class='button'><p><b><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post</a></b></p></div>";
+    echo "<div class='button'><p><b><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post!</a></b></p></div>";
   }
 
   function replytopost($cid, $scid, $tid) {
     echo "<div class='content'><form action='/xampp/breaddit/addreply.php?cid=".$cid."&scid=".$scid."&tid=".$tid."' method='POST'>
-          <p><b>Reply to the post</b></p>
+          <p><b>Reply to the post!</b></p>
           <textarea cols='80' rows='5' name='comment' id='comment'></textarea><br />
           <input type='submit' value='Reply' />
           </form></div>";
@@ -95,7 +95,7 @@
     if (mysqli_num_rows($select) != 0) {
       echo "<div class='content'><table class='reply-table'>";
       while ($row = mysqli_fetch_assoc($select)) {
-        echo nl2br("<tr><th width='15%'>".$row['author']."</th><td>".$row['date_posted']."\n".$row['comment']."\n\n</td></tr>");
+        echo nl2br("<tr><th width='15%'>".$row['author']."</th><td><i>".$row['date_posted']."</i>\n".$row['comment']."\n\n</td></tr>");
       }
       echo "</table></div>";
       }
