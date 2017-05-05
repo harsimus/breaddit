@@ -37,7 +37,7 @@
     </div>
     <?php
       if(isset($_SESSION['username'])) {
-        echo "<div><p><a href='/xampp/breaddit/newtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."'>
+        echo "<div class='button'><p><a href='/xampp/breaddit/newtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."'>
 					  Add new topic!</a></p></div>";
       }
     ?>

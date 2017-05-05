@@ -19,7 +19,7 @@
                             WHERE ($parent_id = categories.cat_id) AND ($parent_id = subcategories.parent_id)");
     echo "<tr><th width='90%'>Categories</th><th width='10%'>Topics</th></tr>";
     while ($row = mysqli_fetch_assoc($select)) {
-      echo "<tr><td class='category_title'><a href='/xampp/breaddit/topics.php?cid=".$row['cat_id']."&scid=".$row['subcat_id']."'>
+      echo "<tr><td class='category-title'><a href='/xampp/breaddit/topics.php?cid=".$row['cat_id']."&scid=".$row['subcat_id']."'>
             </h2><h3>".$row['subcategory_title']."</h3><br />";
       echo $row['subcategory_desc']."</a></td>";
       echo "<td class='num-topics' >".getnumtopics($parent_id, $row['subcat_id'])."</td></tr></br>";
@@ -74,14 +74,14 @@
   }
 
   function replylink($cid, $scid, $tid) {
-    echo "<div class='button'><p><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post</a></p></div>";
+    echo "<div class='button'><p><b><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post</a></b></p></div>";
   }
 
   function replytopost($cid, $scid, $tid) {
     echo "<div class='content'><form action='/xampp/breaddit/addreply.php?cid=".$cid."&scid=".$scid."&tid=".$tid."' method='POST'>
-          <p>Comment</p>
+          <p><b>Reply to the post</b></p>
           <textarea cols='80' rows='5' name='comment' id='comment'></textarea><br />
-          <input type='submit' value='Comment' />
+          <input type='submit' value='Reply' />
           </form></div>";
   }
 

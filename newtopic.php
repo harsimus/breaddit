@@ -33,16 +33,16 @@
          ?>
       </div>
     </div>
-    <div>
+    <!-- <div>
       <h3>Write a new topic!</h3>
-    </div>
+    </div> -->
     <div  class="content">
       <?php
         if (isset($_SESSION['username'])) {
           echo "<form action='/xampp/breaddit/addnewtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."' method='POST'>
-						  <p>Title: </p>
+						  <p><b>Title: </b></p>
 						  <input type='text' id='topic' name='topic' size='100' />
-						  <p>Content: </p>
+						  <p><b>Content: </b></p>
 						  <textarea id='content' name='content' rows='20' cols='98'></textarea><br />
 						  <input type='submit' value='Post' /></form>";
 				} else {

@@ -37,7 +37,7 @@
     <div>
       <?php
         if(!isset($_SESSION['username'])) {
-          echo "<p>Please login first or <a href='/xampp/breaddit/register.html'>click here</a> to register!</p>";
+          echo "<p><b>Please login first or <a href='/xampp/breaddit/register.html'>click here</a> to register!</b></p>";
         }
        ?>
     </div>
