@@ -11,8 +11,6 @@
   }
 
   function logout() {
-    echo nl2br("<p>Welcome ".$_SESSION['username']."!\nComo vai?</p>
-                <form action='/xampp/breaddit/logout.php' method='GET'>
-                <input type='submit' value='Logout' /></form>");
+    echo nl2br("<p>welcome <b>".$_SESSION['username']."</b></p><form action='/xampp/breaddit/logout.php' method='GET'>&nbsp;&nbsp;<input type='submit' value='Logout' /></form>");
   }
 ?>

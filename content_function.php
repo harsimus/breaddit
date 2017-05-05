@@ -6,7 +6,7 @@
 
     while ($row = mysqli_fetch_assoc($select)) {
       echo "<table class='category-table'>";
-      echo "<tr><td class='main-category' colspan='2'>".$row['category_title']."</td></tr>";
+      echo "<tr><td class='main-category' colspan='2'><h2>".$row['category_title']."<h2></td></tr>";
       dispsubcategories($row['cat_id']);
       echo "</table>";
     }
@@ -20,9 +20,9 @@
     echo "<tr><th width='90%'>Categories</th><th width='10%'>Topics</th></tr>";
     while ($row = mysqli_fetch_assoc($select)) {
       echo "<tr><td class='category_title'><a href='/xampp/breaddit/topics.php?cid=".$row['cat_id']."&scid=".$row['subcat_id']."'>
-            ".$row['subcategory_title']."<br />";
+            </h2><h3>".$row['subcategory_title']."</h3><br />";
       echo $row['subcategory_desc']."</a></td>";
-      echo "<td class='num-topics' >".getnumtopics($parent_id, $row['subcat_id'])."</td></tr>";
+      echo "<td class='num-topics' >".getnumtopics($parent_id, $row['subcat_id'])."</td></tr></br>";
     }
   }
 
@@ -63,8 +63,8 @@
 									  WHERE ($cid = categories.cat_id) AND ($scid = subcategories.subcat_id) AND ($tid = topics.topic_id) ORDER BY topic_id DESC");
 
     $row = mysqli_fetch_assoc($select);
-    echo nl2br("<div class='content'><h2 class='title'>".$row['title']."</h2><p>".$row['author']."\n".$row['date_posted']."</p></div>");
-    echo "<div class='content'><p>".$row['content']."</p></div>";
+    echo nl2br("<div class='content'><h2 class='title'>".$row['title']."</h2><p><b>".$row['author']."</b>\n<i>".$row['date_posted']."</i></p></div>");
+    echo "<div class='content'><p>".$row['content']."</p></div></br>";
   }
 
   function addview($cid, $scid, $tid) {
@@ -74,7 +74,7 @@
   }
 
   function replylink($cid, $scid, $tid) {
-    echo "<p><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post</a></p>";
+    echo "<div class='button'><p><a href='/xampp/breaddit/replyto.php?cid=".$cid."&scid=".$scid."&tid=".$tid."'> Reply to this post</a></p></div>";
   }
 
   function replytopost($cid, $scid, $tid) {
