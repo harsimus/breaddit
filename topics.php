@@ -33,8 +33,14 @@
     <div>
       <h3>This is filler</h3>
     </div>
+    <?php
+      if(isset($_SESSION['username'])) {
+        echo "<div class='content'><p><a href='/xampp/breaddit/newtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."'>
+					  Add new topic!</a></p></div>";
+      }
+    ?>
     <div  class="content">
-      <?php dispcategories(); ?>
+      <?php disptopics($_GET['cid'], $_GET['scid']); ?>
     </div>
   </body>
 </html>

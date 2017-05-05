@@ -1,6 +1,7 @@
 <?php
   include ('layout_manager.php');
   include ('content_function.php');
+  addview($_GET['cid'], $_GET['scid'], $_GET['tid']);
 ?>
 <html>
   <head>
@@ -9,7 +10,7 @@
   </head>
   <body>
     <div>
-      <h1>Hello World!</h1>
+      <h1>breaddit</h1>
     </div>
     <div>
       <?php
@@ -31,10 +32,21 @@
        ?>
     </div>
     <div>
-      <h3>This is filler</h3>
+      <?php
+        if(!isset($_SESSION['username'])) {
+          echo "<p>Please login first or <a href='/xampp/breaddit/register.html'>click here</a> to register!</p>";
+        }
+       ?>
     </div>
+    <?php
+      if (isset($_SESSION['username'])) {
+        replytopost($_GET['cid'], $_GET['scid'], $_GET['tid']);
+      }
+     ?>
     <div  class="content">
-      <?php dispcategories(); ?>
+      <?php
+        disptopic($_GET['cid'], $_GET['scid'], $_GET['tid']);
+       ?>
     </div>
   </body>
 </html>

@@ -3,7 +3,7 @@
 $server = 'localhost';
 $username   = 'root';
 $password   = '';
-$database   = 'testdb';
+$database   = 'breaddit';
 
 $db = new mysqli($server, $username, $password, $database);
 

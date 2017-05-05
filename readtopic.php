@@ -1,6 +1,7 @@
 <?php
   include ('layout_manager.php');
   include ('content_function.php');
+  addview($_GET['cid'], $_GET['scid'], $_GET['tid']);
 ?>
 <html>
   <head>
@@ -9,7 +10,7 @@
   </head>
   <body>
     <div>
-      <h1>Hello World!</h1>
+      <h1>breaddit</h1>
     </div>
     <div>
       <?php
@@ -31,10 +32,16 @@
        ?>
     </div>
     <div>
-      <h3>This is filler</h3>
+      <?php
+        replylink($_GET['cid'], $_GET['scid'], $_GET['tid']);
+       ?>
     </div>
     <div  class="content">
-      <?php dispcategories(); ?>
+      <?php
+        disptopic($_GET['cid'], $_GET['scid'], $_GET['tid']);
+        echo "<div class='content'><p>All Replies (".countReplies($_GET['cid'], $_GET['scid'], $_GET['tid']).")</p></div>";
+        dispreplies($_GET['cid'], $_GET['scid'], $_GET['tid']);
+       ?>
     </div>
   </body>
 </html>

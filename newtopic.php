@@ -9,7 +9,7 @@
   </head>
   <body>
     <div>
-      <h1>Hello World!</h1>
+      <h1>breaddit</h1>
     </div>
     <div>
       <?php
@@ -34,7 +34,18 @@
       <h3>This is filler</h3>
     </div>
     <div  class="content">
-      <?php dispcategories(); ?>
+      <?php
+        if (isset($_SESSION['username'])) {
+          echo "<form action='/xampp/breaddit/addnewtopic.php?cid=".$_GET['cid']."&scid=".$_GET['scid']."' method='POST'>
+						  <p>Title: </p>
+						  <input type='text' id='topic' name='topic' size='100' />
+						  <p>Content: </p>
+						  <textarea id='content' name='content'></textarea><br />
+						  <input type='submit' value='Post' /></form>";
+				} else {
+					echo "<p>Please login first or <a href='/xampp/breaddit/register.html'>click here</a> to register.</p>";
+				}
+       ?>
     </div>
   </body>
 </html>
