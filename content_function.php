@@ -42,14 +42,27 @@
 									  AND ($scid = subcategories.subcat_id) ORDER BY topic_id DESC");
 
     if (mysqli_num_rows($select) != 0) {
-      echo "<table class='topic-table'>";
-			echo "<tr><th>Title</th><th>Posted By</th><th>Date Posted</th><th>Views</th><th>Replies</th></tr>";
-			while ($row = mysqli_fetch_assoc($select)) {
-				echo "<tr><td><a href='/xampp/breaddit/readtopic.php?cid=".$cid."&scid=".$scid."&tid=".$row['topic_id']."'>
-					 ".$row['title']."</a></td><td>".$row['author']."</td><td><i>".$row['date_posted']."</i></td><td>".$row['views']."</td>
-					 <td>".$row['replies']."</td></tr>";
-			}
-			echo "</table>";
+      if ($_SESSION['username'] == 'admin') {
+        echo "<table class='topic-table'>";
+  			echo "<tr><th>Title</th><th>Posted By</th><th>Date Posted</th><th>Views</th><th>Replies</th><th></th</tr>";
+  			while ($row = mysqli_fetch_assoc($select)) {
+  				echo "<tr><td><a href='/xampp/breaddit/readtopic.php?cid=".$cid."&scid=".$scid."&tid=".$row['topic_id']."'>
+  					 ".$row['title']."</a></td><td>".$row['author']."</td><td><i>".$row['date_posted']."</i></td><td>".$row['views']."</td>
+  					 <td>".$row['replies']."</td><td><div class='button'><a href='/xampp/breaddit/deletetopic.php?cid=".$cid."&scid=".$scid."&tid=".$row['topic_id']."'>
+     					 Delete</a></div></td></tr>";
+  			}
+  			echo "</table>";
+      }
+      else {
+        echo "<table class='topic-table'>";
+  			echo "<tr><th>Title</th><th>Posted By</th><th>Date Posted</th><th>Views</th><th>Replies</th></tr>";
+  			while ($row = mysqli_fetch_assoc($select)) {
+  				echo "<tr><td><a href='/xampp/breaddit/readtopic.php?cid=".$cid."&scid=".$scid."&tid=".$row['topic_id']."'>
+  					 ".$row['title']."</a></td><td>".$row['author']."</td><td><i>".$row['date_posted']."</i></td><td>".$row['views']."</td>
+  					 <td>".$row['replies']."</td></tr>";
+  			}
+  			echo "</table>";
+      }
     }
     else {
       echo "<p><b>This category has no topics yet. <a href='/xampp/breaddit/newtopic.php?cid=".$cid."&scid=".$scid."'> Be the first to post!</a></b></p>";
@@ -88,17 +101,27 @@
   function dispreplies($cid, $scid, $tid) {
     include('connect.php');
 
-    $select = mysqli_query($db, "SELECT replies.author, replies.comment, replies.date_posted FROM categories, subcategories, topics, replies
+    $select = mysqli_query($db, "SELECT replies.author, replies.comment, replies.date_posted, replies.reply_id FROM categories, subcategories, topics, replies
 									  WHERE ($cid = replies.category_id) AND ($scid = replies.subcategory_id) AND ($tid = replies.topic_id)
                     AND ($cid = categories.cat_id) AND ($scid = subcategories.subcat_id) AND ($tid = topics.topic_id) ORDER BY reply_id DESC");
 
     if (mysqli_num_rows($select) != 0) {
-      echo "<div class='content'><table class='reply-table'>";
-      while ($row = mysqli_fetch_assoc($select)) {
-        echo nl2br("<tr><th width='15%'>".$row['author']."</th><td><i>".$row['date_posted']."</i>\n".$row['comment']."\n\n</td></tr>");
+      if ($_SESSION['username'] == 'admin') {
+        echo "<div class='content'><table class='reply-table'>";
+        while ($row = mysqli_fetch_assoc($select)) {
+          echo nl2br("<tr><th width='15%'>".$row['author']."</th><td><i>".$row['date_posted']."</i>\n".$row['comment']."\n\n</td><td><div class='button'><a href='/xampp/breaddit/deletereply.php?cid=".$cid."&scid=".$scid."&tid=".$tid."&rid=".$row['reply_id']."'>
+            Delete</a></div></td></tr>");
+        }
+        echo "</table></div>";
       }
-      echo "</table></div>";
+      else {
+        echo "<div class='content'><table class='reply-table'>";
+        while ($row = mysqli_fetch_assoc($select)) {
+          echo nl2br("<tr><th width='15%'>".$row['author']."</th><td><i>".$row['date_posted']."</i>\n".$row['comment']."\n\n</td></tr>");
+        }
+        echo "</table></div>";
       }
+    }
   }
 
   function countReplies($cid, $scid, $tid) {

@@ -11,6 +11,7 @@ input[type="submit"], button  {
   height: 30px;
   width: 100px;
   font-weight: bold;
+  text-align: center;
 }
 
 .topic-table a {
